@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Usage check
+if [ "$#" -lt 1 ]; then
+  echo "Usage: $0 <interactsh-session-name>"
+  exit 1
+fi
+
+# SSH host configuration
+SSH_HOST="<user>@<yourhost>"
+
+ssh -q -t "$SSH_HOST" "cat ~/client/logs/$1 |grep -e '\] Received .* interaction' "
+
