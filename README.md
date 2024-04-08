@@ -35,13 +35,17 @@ interactsh-list
 
 ## Quicly read the interaction log
 
-The interactsh-read will, if given a sesison name, list the logged interactions in a short format
+The interactsh-read will, if given a session name, list the logged interactions in a short format
 
 ```
 interactsh-read poc1
 ```
 
 ![](https://github.com/doomerhunter/interactsh-loggers/blob/main/img/read.png)
+
+## Kill a session or all session
+
+By killing the tmux window, the associated process will be killed. Use either `interactsh-kill $1` for a single window, or `interactsh-killall` for all client windows.
 
 ## Requirements 
 
