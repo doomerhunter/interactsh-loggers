@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Usage check
+if [ "$#" -lt 1 ]; then
+  echo "Usage: $0 <interactsh-session-name>"
+  exit 1
+fi
+
+matcher=$(echo $1 | sed 's/$/.<yoursub>.<yourdom>.<yourtld>/')
+SESSION_NAME=$(echo $1)
+
+echo $matcher
+COMMAND="interactsh-client -server <yoursub>.<yourdom>.<yourtld> -token <yourtoken> -sf ~/client/sessions/$1 -v -o ~/client/logs/$1 -m $matcher"
+
+
+ssh -t <youruser>@<yourserver> bash -c "'
+# Check if the tmux session exists
+if tmux has-session -t \"$SESSION_NAME\" 2>/dev/null; then
+  echo \"Session $SESSION_NAME already exists. Attaching...\"
+else
+  echo \"Creating new session $SESSION_NAME with infinite scrollback.\"
+  # Create a new tmux session, detached, with infinite scrollback
+  tmux new-session -d -s \"$SESSION_NAME\" \; set-option -g history-limit 99999
+
+  # Send the command to the tmux session
+  tmux send-keys -t \"$SESSION_NAME\" \"$COMMAND\" C-m
+fi
+
+# Attach to the session. This will keep the session running if the user detaches.
+tmux attach -t \"$SESSION_NAME\"
+'"

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# SSH host configuration
+SSH_HOST="<youruser>@<yourserver>"
+
+# Function to attach to a session
+attach_to_session() {
+  local session_name="$1"
+  ssh -t "$SSH_HOST" "tmux attach-session -t \"$session_name\""
+}
+
+# If no arguments are passed, list tmux sessions and use fzf for selection
+if [ "$#" -eq 0 ]; then
+  SESSION_NAME=$(ssh -t "$SSH_HOST" "tmux list-sessions -F '#{session_name}'" | fzf --height=40% --border --reverse)
+  SESSION_NAME=$(echo "$SESSION_NAME" | tr -d '\r') # Remove carriage return (if any)
+
+  if [ -z "$SESSION_NAME" ]; then
+    echo "No session selected."
+    exit 1
+  else
+    attach_to_session "$SESSION_NAME"
+  fi
+else
+  # Existing logic here for other commands or arguments
+  echo "Unsupported argument. This script only supports listing and attaching to sessions without any arguments."
+  exit 1
+fi
+
