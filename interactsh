@@ -7,7 +7,7 @@ if [ "$#" -lt 1 ]; then
 fi
 
 matcher=$(echo $1 | sed 's/$/.<yoursub>.<yourdom>.<yourtld>/')
-SESSION_NAME=$(echo $1)
+SESSION_NAME=$(echo $1 |sed 's/^/client-/')
 
 echo $matcher
 COMMAND="interactsh-client -server <yoursub>.<yourdom>.<yourtld> -token <yourtoken> -sf ~/client/sessions/$1 -v -o ~/client/logs/$1 -m $matcher"

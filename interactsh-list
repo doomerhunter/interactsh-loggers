@@ -11,7 +11,7 @@ attach_to_session() {
 
 # If no arguments are passed, list tmux sessions and use fzf for selection
 if [ "$#" -eq 0 ]; then
-  SESSION_NAME=$(ssh -t "$SSH_HOST" "tmux list-sessions -F '#{session_name}'" | fzf --height=40% --border --reverse)
+  SESSION_NAME=$(ssh -t "$SSH_HOST" "tmux list-sessions -F '#{session_name}'" |  grep 'client-' | fzf --height=40% --border --reverse)
   SESSION_NAME=$(echo "$SESSION_NAME" | tr -d '\r') # Remove carriage return (if any)
 
   if [ -z "$SESSION_NAME" ]; then
