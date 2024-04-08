@@ -14,6 +14,10 @@ Create aliases to execute the interact-sh client on a remote server within a tmu
 The `interactsh` script will create a new tmux session if it does not exists (ex: clientname.yourdomain.org) and only monitors interactions on that domain. 
 Tmux scrollback is set to 99999
 
+```
+interactsh poc1
+```
+
 ![](https://github.com/doomerhunter/interactsh-wrappers/blob/main/img/doc-launch.png)
 ![](https://github.com/doomerhunter/interactsh-wrappers/blob/main/img/doc-tmux.png)
 
@@ -21,9 +25,23 @@ Tmux scrollback is set to 99999
 
 The interactsh-list will, if given no args, list the remote tmux sessions and prompt you a nice UI (FZF) to choose your session and automatically attach to it
 
+```
+interactsh-list
+```
+
 ![](https://github.com/doomerhunter/interactsh-wrappers/blob/main/img/fzf.png)
 ![](https://github.com/doomerhunter/interactsh-wrappers/blob/main/img/fzf2.png)
 ![](https://github.com/doomerhunter/interactsh-wrappers/blob/main/img/tlist.png)
+
+## Quicly read the interaction log
+
+The interactsh-read will, if given a sesison name, list the logged interactions in a short format
+
+```
+interactsh-read poc1
+```
+
+![](https://github.com/doomerhunter/interactsh-loggers/blob/main/img/read.png)
 
 ## Requirements 
 
