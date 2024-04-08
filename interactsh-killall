@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# SSH host configuration
+SSH_HOST="<youruser>@<yourhost>"
+
+ssh -q -t "$SSH_HOST" "tmux list-windows -a | grep 'client-' | cut -d: -f1 | xargs -I {} tmux kill-window -t {}"
+
