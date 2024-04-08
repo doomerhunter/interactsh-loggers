@@ -1,4 +1,4 @@
-# interactsh-wrappers
+# interactsh-loggers / wrappers
 
 ## Why ?
 
