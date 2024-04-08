@@ -2,7 +2,8 @@
 
 ## Why ?
 
-Interact-sh logging is a bit complicated. To have long running sessions in the background, you either have to configure disk storage + encryption, or keep your client running
+Interact-sh logging is a bit complicated. To have long running sessions in the background, you either have to configure disk storage + encryption, or keep your client running. 
+This repo aims to provide a quick solution for logging / saving long runnning collaborators instances and ensure that no data is lost. It also helps if you need to (rip)grep a string in the logs later.
 
 ## Solution 
 
